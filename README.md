@@ -3,9 +3,10 @@
 Homebrew formulae for Data Desk tools.
 
 ```bash
-brew tap data-desk-eco/tap
-brew install delve
+brew install --HEAD data-desk-eco/tap/delve
 ```
+
+(The qualified name is necessary — `homebrew-core` already ships a `delve` formula for the Go debugger.)
 
 ## Formulae
 
