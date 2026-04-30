@@ -1,13 +1,13 @@
 class Sift < Formula
+  include Language::Python::Virtualenv
+
   desc "Investigative research agent for OCCRP Aleph (local or hosted LLM)"
   homepage "https://github.com/data-desk-eco/sift"
-  url "https://github.com/data-desk-eco/sift/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "REPLACE_AT_RELEASE"
   license "MIT"
   head "https://github.com/data-desk-eco/sift.git", branch: "main"
 
+  depends_on "python@3.13"
   depends_on "node"
-  depends_on "uv"
   depends_on :macos
   depends_on arch: :arm64
   # llama.cpp is installed lazily by `sift init` if the user picks the local
@@ -15,8 +15,10 @@ class Sift < Formula
   # OpenAI, etc.) don't need it.
 
   def install
-    libexec.install Dir["*"]
-    bin.install_symlink libexec/"bin/sift"
+    venv = virtualenv_create(libexec, "python3.13")
+    venv.pip_install "click>=8.1"
+    venv.pip_install "requests>=2.31"
+    venv.pip_install_and_link buildpath
   end
 
   def post_install
@@ -37,6 +39,6 @@ class Sift < Formula
   end
 
   test do
-    assert_match "sift init", shell_output("#{bin}/sift --help")
+    assert_match "sift", shell_output("#{bin}/sift --help")
   end
 end
