@@ -1,10 +1,10 @@
-class Delve < Formula
+class Sift < Formula
   desc "Local-LLM investigative research agent for OCCRP Aleph"
-  homepage "https://github.com/data-desk-eco/delve"
-  url "https://github.com/data-desk-eco/delve/archive/refs/tags/v0.1.0.tar.gz"
+  homepage "https://github.com/data-desk-eco/sift"
+  url "https://github.com/data-desk-eco/sift/archive/refs/tags/v0.1.0.tar.gz"
   sha256 "REPLACE_AT_RELEASE"
   license "MIT"
-  head "https://github.com/data-desk-eco/delve.git", branch: "main"
+  head "https://github.com/data-desk-eco/sift.git", branch: "main"
 
   depends_on "llama.cpp"
   depends_on "node"
@@ -14,7 +14,7 @@ class Delve < Formula
 
   def install
     libexec.install Dir["*"]
-    bin.install_symlink libexec/"bin/delve"
+    bin.install_symlink libexec/"bin/sift"
   end
 
   def post_install
@@ -25,10 +25,10 @@ class Delve < Formula
     <<~EOS
       To finish setup, run:
 
-        delve init
+        sift init
 
       This will:
-        - create an encrypted vault at ~/.delve/.vault.sparseimage
+        - create an encrypted vault at ~/.sift/.vault.sparseimage
         - prompt for your Aleph URL and API key
         - download the default model (~12 GB)
 
@@ -37,6 +37,6 @@ class Delve < Formula
   end
 
   test do
-    assert_match "delve init", shell_output("#{bin}/delve --help")
+    assert_match "sift init", shell_output("#{bin}/sift --help")
   end
 end
