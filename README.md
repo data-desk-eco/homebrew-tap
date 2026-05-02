@@ -1,15 +1,19 @@
 # Data Desk Homebrew tap
 
-Homebrew formulae for Data Desk tools.
+Homebrew casks and formulae for [Data Desk](https://datadesk.eco) tools.
 
-For sift, the recommended install path is now [its `install.sh`](https://github.com/data-desk-eco/sift#install) (which uses `uv tool install` under the hood and is faster, with fewer moving parts). The brew formula is kept as an alternative for people already wedded to `brew`:
+## Casks
+
+- [`sift`](Casks/sift.rb) — investigative research agent for [Aleph](https://aleph.occrp.org) or [OpenAleph](https://openaleph.org/), with a pluggable LLM backend (local llama.cpp + Qwen 3.6 by default, or any hosted OpenAI-compatible endpoint). See [data-desk-eco/sift](https://github.com/data-desk-eco/sift).
+
+## Install
 
 ```bash
-brew install --HEAD data-desk-eco/tap/sift
+brew install --cask data-desk-eco/tap/sift
 ```
 
-(The qualified name is necessary — `homebrew-core` already ships an unrelated `sift` formula, a `grep` alternative.)
+The qualified name is necessary because `homebrew-core` already ships an unrelated `sift` formula (a `grep` alternative).
 
-## Formulae
+## Updating
 
-- [`sift`](Formula/sift.rb) — investigative research agent for OCCRP Aleph or OpenAleph, with a pluggable LLM backend (local llama.cpp + Qwen 3.6 by default, or any hosted OpenAI-compatible endpoint). See [data-desk-eco/sift](https://github.com/data-desk-eco/sift).
+Casks here are bumped automatically by the [release workflow](https://github.com/data-desk-eco/sift/blob/main/.github/workflows/release.yml) in each tool's repo when a `v*` tag is pushed.
