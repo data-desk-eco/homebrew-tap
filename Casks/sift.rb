@@ -1,6 +1,6 @@
 cask "sift" do
   version "0.1.0"
-  sha256 "0481229cddf9a72986310f2da7d6fa35036e3f717b0db22a85e7e1ba93ee0b0b"
+  sha256 "ed13325e8d8856187900b7926fa67c31c600c2a0a79fd878152f827ae26b3e5a"
 
   url "https://github.com/data-desk-eco/sift/releases/download/v#{version}/Sift-v#{version}.zip"
   name "Sift"
