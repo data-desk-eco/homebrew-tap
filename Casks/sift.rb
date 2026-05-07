@@ -16,6 +16,16 @@ cask "sift" do
   app "Sift.app"
   binary "#{appdir}/Sift.app/Contents/Resources/bin/sift"
 
+  # Sift.app is ad-hoc signed (no paid Apple Developer ID), so Gatekeeper
+  # would otherwise block the first launch with "Apple could not verify…".
+  # Stripping the quarantine xattr brew applied on download lets the menu
+  # bar app open silently. The ad-hoc signature is still checked at launch,
+  # so post-install tampering is still detected.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Sift.app"]
+  end
+
   zap trash: [
     "~/.sift",
     "~/Library/Application Support/Sift",
